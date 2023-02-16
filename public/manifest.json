@@ -1,0 +1,22 @@
+{
+	"name": "SeeColor Extension",
+	"description": "A React app that evaluates the color blindness accessibility of images in a Chrome Extension",
+	"version": "0.1",
+	"manifest_version": 3,
+	"background": {
+	  "service_worker": "background.js"
+	},
+	"permissions": [
+	  "contextMenus"
+	],
+	"action": {
+	  "default_popup": "popup.html"
+	},
+	"icons": {
+	  "16": "16.png",
+	  "32": "32.png",
+	  "48": "48.png",
+	  "128": "icon.png"
+	}
+  }
+  
