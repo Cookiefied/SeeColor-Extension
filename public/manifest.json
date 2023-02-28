@@ -7,7 +7,9 @@
 	  "service_worker": "background.js"
 	},
 	"permissions": [
-	  "contextMenus"
+	  "contextMenus",
+	  "activeTab",
+	  "tabs"
 	],
 	"action": {
 	  "default_popup": "popup.html"
@@ -18,5 +20,4 @@
 	  "48": "48.png",
 	  "128": "icon.png"
 	}
-  }
-  
+}
