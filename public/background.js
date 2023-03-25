@@ -1,7 +1,7 @@
 chrome.contextMenus.create({
 	id: "seeColor",
 	title: "Evaluate via SeeColor",
-	contexts: ["image"],
+	contexts: ["image"]
   });
   
   chrome.contextMenus.onClicked.addListener(function(info, tab) {
