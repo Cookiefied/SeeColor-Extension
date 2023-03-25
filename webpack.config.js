@@ -41,4 +41,11 @@ module.exports = {
     compress: true,
     port: 9000,
   },
+  resolve: {
+    fallback: {
+      "stream": require.resolve("stream-browserify"),
+      "util": require.resolve("util/"),
+      "buffer": require.resolve("buffer/"),
+    }
+  }  
 };
