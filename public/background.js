@@ -11,7 +11,7 @@ chrome.contextMenus.create({
 				tabId: tab.id,
 				type: "popup",
 				height: 600,
-				width: 325,
+				width: 350,
 				url: "popup.html?imageUrl=" + encodeURIComponent(info.srcUrl)
 			});
 		});

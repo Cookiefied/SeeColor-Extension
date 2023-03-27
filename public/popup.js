@@ -4,9 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	if (imageUrl) {
 		const img = document.createElement("img");
 		img.src = imageUrl;
-		document.getElementById("Result").appendChild(img);
+		document.getElementById("evalImage").appendChild(img);
 		// Define your function that takes the image URL as a parameter
 		img.onload = function () {
+
 			const image = img;
 			// Set the canvas size to be the same as of the loaded image
 			const canvas = document.createElement("canvas");
@@ -244,6 +245,10 @@ const contrastTest = (rgbTestValues) =>{
 	pdContrast = printPD(ratios);
 	tContrast = printT(ratios);
 	
+	//print results
+	document.getElementById("Results").style.display = "block";
+	document.getElementById("Instructions").style.display = "none";
+	document.getElementById("SeeColor logo").style.display = "none";
 	console.log("Monochromacy: " + mContrast * 100)
 	document.getElementById("MonoChromacy").innerHTML = "MonoChromacy: " + (mContrast * 100);
 	console.log("Protanopia/Deuteranopia: " + pdContrast * 100)

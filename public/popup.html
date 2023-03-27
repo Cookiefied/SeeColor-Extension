@@ -3,22 +3,100 @@
   <head>
     <title>SeeColor Extension</title>
     <style>
+      * {
+        box-sizing: border-box;
+        margin: 1vw;
+        font-family: 'PT Sans', sans-serif;
+        text-decoration: none;
+        text-align: center;
+      }
+      #background {
+        position: fixed;
+        object-fit: cover;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        margin-top: 0vw;
+        margin-left: 0vw;
+      }
+      h1 {
+        background: linear-gradient(90deg,#1c1b1b,#1a1717);
+        color: #fff;
+        border-radius: 2vw;
+      }
+      a {
+        font-size: 5vw;
+        color: #00853e;
+        background-color: #f5f5f5;
+        box-shadow: 4px 4px 10px #5a5a5a;
+        border-radius: 1vw;
+        padding-left: 2vw;
+        padding-right: 2vw;
+      }
+      p {
+        font-size: 4.5vw;
+      }
       img {
         max-width: 100%;
+        border: 1px;
+        border: #5a5a5a;
       }
       body {
         background: #f5f5f5;
+        min-width:300px;
+      }
+      img#SeeColor\ logo {
+        width: 300px; 
+        height: 300px;
+        border: none;
+      }
+      div#Instructions {
+        font-size: 4.5vw;
+        background-color: #f5f5f5;
+        box-shadow: 4px 4px 10px #5a5a5a;
+        border-radius: 2vw;
+        margin-bottom: 2vh;
+      }
+      div#Results {
+        font-size: 5vw;
+        padding: 1vh;
+        background-color: #f9f9f9;
+        box-shadow: 4px 4px 10px #5a5a5a;
+        border-radius: 2vw;
+        display: none;
+      }
+      div#MonoChromacy {
+        text-align: left;
+      }
+      div#Protanopia\/Deuteranopia {
+        text-align: left;
+        font-size: 4.5vw;
+      }
+      div#Tritanopia {
+        text-align: left;
+        margin-bottom: 1vh;
       }
     </style>
     <script src="popup.js"></script>
   </head>
   <body>
+    <img src="low-poly-grid.svg" id="background">
     <h1>SeeColor Extension</h1>
-    <a href="https://seecolor-unt.web.app" target="_blank">SeeColor Home</a>
-    <img src="seecolor.svg" id="SeeColor logo" width="300px" height="300px">
-    <div id="Result"></div>
-    <div id="MonoChromacy">MonoChromacy: </div>
-    <div id="Protanopia/Deuteranopia">Protanopia/Deuteranopia: </div>
-    <div id="Tritanopia">Tritanopia: </div>
+    <a href="https://seecolor-unt.web.app" target="_blank">SeeColor Main Website</a>
+    <img src="seecolor.svg" id="SeeColor logo">
+    <div id="evalImage"></div>
+    <div id="Results">
+      <div id="MonoChromacy">MonoChromacy: </div>
+      <div id="Protanopia/Deuteranopia">Protanopia/Deuteranopia: </div>
+      <div id="Tritanopia">Tritanopia: </div>
+    </div>
+    <div id="Instructions">
+      <h2>Instructions:</h2>
+      <p>Right click an image on the page, click on the 'Evaluate' button to see the colorblindness results.</p>
+      <p>A lower value is best. </p>
+      <p>See the main site for more information.</p>
+    </div>
   </body>
 </html>
