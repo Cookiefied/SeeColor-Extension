@@ -11,13 +11,24 @@
 	  "32": "public/32.png",
 	  "48": "public/48.png",
 	  "128": "public/icon.png"
-	},
+  },
 
   "content_scripts": [
     {
       "js": ["ColorScript.js"]
     }
-  ]
+  ], 
+	
+  "permissions": [
+    "menus",
+    "activeTab"
+  ],
+	
+  "sidebar_action": {
+    "default_icon": "public/32.png",
+    "default_title" : "SeeColor Test",
+    "default_panel": "sidebar.html"
+  }
 
 }
 
