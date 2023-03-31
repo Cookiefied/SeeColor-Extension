@@ -12,14 +12,13 @@
 	  "48": "public/48.png",
 	  "128": "public/icon.png"
   },
-
-  "background": {
+  
+  "content_scripts": {
     "scripts": ["SeeColor.js"]
   },
 	
   "permissions": [
-    "menus",
-    "activeTab"
+    "contextMenus"
   ],
 	
   "sidebar_action": {
