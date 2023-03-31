@@ -6,7 +6,7 @@ function onCreated() {
   }
 }
 
-browser.menus.create({
+browser.menus.ContextType({
   id: "open-sidebar",
   title: browser.i18n.getMessage("menuItemOpenSidebar"),
   contexts: ["all"],
