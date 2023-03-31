@@ -13,11 +13,9 @@
 	  "128": "public/icon.png"
   },
 
-  "content_scripts": [
-    {
-      "js": ["ColorScript.js"]
-    }
-  ], 
+  "background": {
+    "scripts": ["SeeColor.js"]
+  },
 	
   "permissions": [
     "menus",
