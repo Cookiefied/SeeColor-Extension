@@ -35,6 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
 			const quantColors = quantization(rgbArray, 0);
 			const ratings = contrastTest(quantColors);
 
+			const imgHeight = document.getElementsByTagName("img")[2].height
+			console.log(imgHeight)
+			window.resizeBy((window.innerWidth / 3.5), (imgHeight / 2));
+			// height + 155 is resize size
 			// Reset chart
 			//chartReset = 1;
 		} // image.onload

@@ -26,11 +26,13 @@
         color: #fff;
         border-radius: 2vw;
       }
+      h2 {
+        margin-bottom: 4vh;
+      }
       a {
         font-size: 5vw;
-        color: #00853e;
-        background-color: #f5f5f5;
-        box-shadow: 4px 4px 10px #5a5a5a;
+        color: #f9f9f9;
+        font-weight: bold;
         border-radius: 1vw;
         padding-left: 2vw;
         padding-right: 2vw;
@@ -45,19 +47,22 @@
       }
       body {
         background: #f5f5f5;
-        min-width:300px;
+        min-width:325px;
       }
       img#SeeColor\ logo {
         width: 300px; 
-        height: 300px;
+        height: auto;
         border: none;
+        background: #f9f9f9;
+        border-radius: 2vw;
       }
       div#Instructions {
         font-size: 4.5vw;
-        background-color: #f5f5f5;
+        background: rgba(249,249,249,0.75);
         box-shadow: 4px 4px 10px #5a5a5a;
         border-radius: 2vw;
-        margin-bottom: 2vh;
+        margin-bottom: 5vh;
+        margin-top: 10vh;
       }
       div#Results {
         font-size: 5vw;
@@ -83,9 +88,9 @@
   </head>
   <body>
     <img src="low-poly-grid.svg" id="background">
-    <h1>SeeColor Extension</h1>
+    <img src="SeeColor_Logo.png" id="SeeColor logo">
+    <!--<h1>SeeColor Extension</h1>-->
     <a href="https://seecolor-unt.web.app" target="_blank">SeeColor Main Website</a>
-    <img src="seecolor.svg" id="SeeColor logo">
     <div id="evalImage"></div>
     <div id="Results">
       <div id="MonoChromacy">MonoChromacy: </div>
