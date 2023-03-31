@@ -7,7 +7,7 @@
   "description": "Gives color-blindness data within Firefox Extension format.",
 
   "icons": {
-    "48": "icons/border-48.png"
+    "svg": "public/seecolor.svg"
   },
 
   "content_scripts": [
