@@ -250,15 +250,15 @@ const contrastTest = (rgbTestValues) =>{
 	tContrast = printT(ratios);
 	
 	//print results
-	document.getElementById("Results").style.display = "block";
+	document.getElementById("Results").style.display = "grid";
 	document.getElementById("Instructions").style.display = "none";
 	document.getElementById("SeeColor logo").style.display = "none";
 	console.log("Monochromacy: " + mContrast * 100)
-	document.getElementById("MonoChromacy").innerHTML = "MonoChromacy: " + (mContrast * 100);
+	document.getElementById("MonoChromacy").innerHTML = "MonoChromacy: " + "<span>" + (mContrast * 100).toFixed(2) + "</span>";
 	console.log("Protanopia/Deuteranopia: " + pdContrast * 100)
-	document.getElementById("Protanopia/Deuteranopia").innerHTML = "Protanopia/Deuteranopia: " + (pdContrast * 100);
+	document.getElementById("Protanopia/Deuteranopia").innerHTML = "Protanopia/Deuteranopia: " + "<span>" + (pdContrast * 100).toFixed(2) + "</span>";
 	console.log("Tritanopia: " + tContrast * 100)
-	document.getElementById("Tritanopia").innerHTML = "Tritanopia: " + (tContrast * 100);
+	document.getElementById("Tritanopia").innerHTML = "Tritanopia: " + "<span>" + (tContrast * 100).toFixed(2) + "</span>";
 
 //printChart(mContrast, pdContrast, tContrast);
 }

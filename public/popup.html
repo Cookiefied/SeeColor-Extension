@@ -75,13 +75,26 @@
       div#MonoChromacy {
         text-align: left;
       }
+      div#MonoChromacy span {
+        float: right;
+      }
       div#Protanopia\/Deuteranopia {
         text-align: left;
-        font-size: 4.5vw;
+        
+      }
+      div#Protanopia\/Deuteranopia span {
+        float: right;
       }
       div#Tritanopia {
         text-align: left;
         margin-bottom: 1vh;
+      }
+      div#Tritanopia span {
+        float: right;
+      }
+      p#note {
+        font-size: 3.75vh;
+        margin-top: 2vh;
       }
     </style>
     <script src="popup.js"></script>
@@ -102,6 +115,7 @@
       <p>Right click an image on the page, click on the 'Evaluate' button to see the colorblindness results.</p>
       <p>A lower value is best. </p>
       <p>See the main site for more information.</p>
+      <p id="note">*note, images must be public, private images may be uploaded to the main site</p>
     </div>
   </body>
 </html>
