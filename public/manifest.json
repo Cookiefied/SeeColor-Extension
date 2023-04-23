@@ -13,10 +13,11 @@
     "default_popup": "popup.html"
   },
   "background": {
-    "service_worker": "background.js"
+    "scripts": "background.js"
   },
   "permissions": [
     "contextMenus",
+    "menus",
     "activeTab",
     "storage",
     "scripting"
