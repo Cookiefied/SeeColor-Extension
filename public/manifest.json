@@ -2,7 +2,7 @@
   "name": "SeeColor Extension",
   "description": "A Firefox extension that evaluates the color blindness accessibility of images",
   "version": "1.0.0",
-  "manifest_version": 3,
+  "manifest_version": 2,
   "icons": {
     "16": "16.png",
     "32": "32.png",
@@ -13,9 +13,10 @@
     "default_popup": "popup.html"
   },
   "background": {
-    "persistent: false",
-    "scripts": "background.js"
+    "scripts": ["background.js"],
+    "persistent": true
   },
+  
   "permissions": [
     "contextMenus",
     "menus",
