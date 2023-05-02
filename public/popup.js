@@ -1,3 +1,12 @@
+/*
+ _              ___  _ _ _____ 
+| |_ _ __ __ _ / _ \/ / |___  |
+| __| '__/ _` | | | | | |  / / 
+| |_| | | (_| | |_| | | | / /  
+ \__|_|  \__, |\___/|_|_|/_/   
+         |___/                 
+*/
+
 document.addEventListener("DOMContentLoaded", function () {
 	const urlParams = new URLSearchParams(window.location.search);
 	const imageUrl = urlParams.get("imageUrl");
@@ -44,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		} // image.onload
 	} // if
 });
-
+ 
 
 //from https://github.com/zygisS22/color-palette-extraction/blob/master/index.js  
 //build an array of rgb objects, and return iy
@@ -252,85 +261,21 @@ const contrastTest = (rgbTestValues) =>{
 	//print results
 	document.getElementById("Results").style.display = "grid";
 	document.getElementById("Instructions").style.display = "none";
+	document.getElementById("resultsChart").style.display = "none";
 	document.getElementById("SeeColor logo").style.display = "none";
+	document.getElementById("resultsChart").style.display = "flex";
+	document.getElementById("MResults").style.display = "block";
+	document.getElementById("PDResults").style.display = "block";
+	document.getElementById("TResults").style.display = "block";
 	console.log("Monochromacy: " + mContrast * 100)
 	document.getElementById("MonoChromacy").innerHTML = "MonoChromacy: " + "<span>" + (mContrast * 100).toFixed(2) + "</span>";
 	console.log("Protanopia/Deuteranopia: " + pdContrast * 100)
 	document.getElementById("Protanopia/Deuteranopia").innerHTML = "Protanopia/Deuteranopia: " + "<span>" + (pdContrast * 100).toFixed(2) + "</span>";
 	console.log("Tritanopia: " + tContrast * 100)
 	document.getElementById("Tritanopia").innerHTML = "Tritanopia: " + "<span>" + (tContrast * 100).toFixed(2) + "</span>";
+	//showDetails();
 
-//printChart(mContrast, pdContrast, tContrast);
 }
-
-/*const printChart = (mContrast, pdContrast, tContrast) => {
-	const ctx = document.getElementById('resultsChart');
-	Chart.defaults.font.size = 20;
-	Chart.defaults.set('plugins.datalabels', {
-	color: '#F9F9F9',
-		font: {
-			weight: 'bold'
-		},
-		formatter: Math.round
-	});
-
-	const chartStatus = Chart.getChart('resultsChart'); if (chartStatus !== undefined) { chartStatus.destroy(); }
-
-resultsChart = new Chart(ctx, {
-	type: 'bar',
-	data: {
-		labels: ['MonoChromacy', 'Protanopia/Deuteranopia', 'Tritanopia'],
-		datasets: [{
-			label:"rating",
-			data: [mContrast * 100, pdContrast * 100, tContrast * 100],
-			backgroundColor: [
-				'rgba(0, 133, 62, 1.0)'
-			],
-			borderColor: [
-				'rgba(0, 0, 0, 1)',
-				'rgba(0, 0, 0, 1)',
-				'rgba(0, 0, 0, 1)'
-			],
-			borderWidth: 2,
-		}],
-		datalabels: {
-			align: 'end',
-			anchor: 'start',
-		}
-	},
-	
-	plugins: [ChartDataLabels],
-	options: {
-		datalabels: {
-		color: 'white',
-		font: {
-			weight: 'bold'
-		},
-		formatter: Math.round
-		},
-		
-		scales: {
-		y: {
-			suggestedMin: 0,
-			suggestedMax: 100
-		}
-	},
-		
-		layout:{
-			padding: 2
-		},
-		plugins:{
-			title:{
-			display:true,
-			text:"Contrast Ratings - High values indicate less contrast",
-			}
-		},
-		responsive: true,
-		maintainAspectRatio: true
-	}
-	});
-}
-*/
 
 //decide which tests the colours will display for
 const getColourRange = (hue) =>{
@@ -365,7 +310,7 @@ const getColourRange = (hue) =>{
 const printPD = (ratios) =>{
 
 	const pdresultsContainer = document.getElementById("pdresults");
-	//pdresultsContainer.innerHTML = "";
+	pdresultsContainer.innerHTML = "";
 
 	const numRatiosToPrint = ratios.length;
 
@@ -395,30 +340,62 @@ const printPD = (ratios) =>{
 
 	//create test result elements
 	const contrastElement = document.createElement("div");
+	contrastElement.id  = "contrast";
 	const colour1Element = document.createElement("div");
+	colour1Element.id  = "contrast1";
 	const colour2Element = document.createElement("div");
+	colour2Element.id  = "contrast2";
 	const WCAGElementAAL = document.createElement("div");
+	WCAGElementAAL.id  = "aalarge";
+	const pfElementAAL = document.createElement("h4");
+	pfElementAAL.id  = "pf1";
 	const WCAGElementAAS = document.createElement("div");
+	WCAGElementAAS.id  = "aasmall";
+	const pfElementAAS = document.createElement("h4");
+	pfElementAAS.id  = "pf2";
 	const WCAGElementAAAL = document.createElement("div");
+	WCAGElementAAAL.id  = "aaalarge";
+	const pfElementAAAL = document.createElement("h4");
+	pfElementAAAL.id  = "pf3";
 	const WCAGElementAAAS = document.createElement("div");
+	WCAGElementAAAS.id  = "aaasmall";
+	const pfElementAAAS = document.createElement("h4");
+	pfElementAAAS.id  = "pf4";
 	contrastElement.appendChild(document.createTextNode(ratios[i].contrastRatio.toFixed(5)));
 
 	//get results of WCAG tests
-				const resultWCAGAAL = `
-				AA-level large text: ${ratios[i].contrastRatio < 1/3 ? 'PASS' : 'FAIL' } `;
-				const resultWCAGAAS = `
-				AA-level small text: ${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' } `;
-				const resultWCAGAAAL = `
-				AAA-level large text: ${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' }  `;
-				const resultWCAGAAAS = `
-				AAA-level small text: ${ratios[i].contrastRatio < 1/7 ? 'PASS' : 'FAIL' }`;
+		const resultWCAGAAL = `
+		AA-level large text: `
+		const pfAAL = `${ratios[i].contrastRatio < 1/3 ? 'PASS' : 'FAIL' } `;
+		
+		const resultWCAGAAS = `
+		AA-level small text: `
+		const pfAAS = `${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' } `;
+		
+		const resultWCAGAAAL = `
+		AAA-level large text: `
+		const pfAAAL = `${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' }  `;
+		
+		const resultWCAGAAAS = `
+		AAA-level small text: `
+		const pfAAAS = `${ratios[i].contrastRatio < 1/7 ? 'PASS' : 'FAIL' }`;
+
 
 
 	//display wcag results
 	WCAGElementAAL.appendChild(document.createTextNode(resultWCAGAAL));
+	pfElementAAL.appendChild(document.createTextNode(pfAAL));
+	pfElementAAL.className = ratios[i].contrastRatio < 1/3 ? "pass" : "fail";
 	WCAGElementAAS.appendChild(document.createTextNode(resultWCAGAAS));
+	pfElementAAS.appendChild(document.createTextNode(pfAAS));
+	pfElementAAS.className = ratios[i].contrastRatio < 1/4.5 ? "pass" : "fail";
 	WCAGElementAAAL.appendChild(document.createTextNode(resultWCAGAAAL));
+	pfElementAAAL.appendChild(document.createTextNode(pfAAAL));
+	pfElementAAAL.className = ratios[i].contrastRatio < 1/4.5 ? "pass" : "fail";
 	WCAGElementAAAS.appendChild(document.createTextNode(resultWCAGAAAS));
+	pfElementAAAS.appendChild(document.createTextNode(pfAAAS));
+	pfElementAAAS.className = ratios[i].contrastRatio < 1/7 ? "pass" : "fail";
+
 
 	//display hex colours
 	const hex1 = rgbToHex(ratios[i].colour1);
@@ -432,13 +409,17 @@ const printPD = (ratios) =>{
 
 
 	
-	//pdresultsContainer.appendChild(contrastElement);
-	//pdresultsContainer.appendChild(WCAGElementAAL);
-	//pdresultsContainer.appendChild(WCAGElementAAS);
-	//pdresultsContainer.appendChild(WCAGElementAAAL);
-	//pdresultsContainer.appendChild(WCAGElementAAAS);
-	//pdresultsContainer.appendChild(colour1Element);
-	//pdresultsContainer.appendChild(colour2Element);
+	pdresultsContainer.appendChild(contrastElement);
+	pdresultsContainer.appendChild(WCAGElementAAL);
+	pdresultsContainer.appendChild(pfElementAAL);
+	pdresultsContainer.appendChild(WCAGElementAAS);
+	pdresultsContainer.appendChild(pfElementAAS);
+	pdresultsContainer.appendChild(WCAGElementAAAL);
+	pdresultsContainer.appendChild(pfElementAAAL);
+	pdresultsContainer.appendChild(WCAGElementAAAS);
+	pdresultsContainer.appendChild(pfElementAAAS);
+	pdresultsContainer.appendChild(colour1Element);
+	pdresultsContainer.appendChild(colour2Element);
 	
 	}
 
@@ -446,7 +427,8 @@ const printPD = (ratios) =>{
 	if (foundNone == true){
 	const naElement = document.createElement("div");
 	naElement.appendChild(document.createTextNode("NA"));
-	//pdresultsContainer.appendChild(naElement);
+	naElement.className = "na";
+	pdresultsContainer.appendChild(naElement);
 	return 0;
 	}
 	else {
@@ -458,7 +440,7 @@ const printPD = (ratios) =>{
 const printT = (ratios) =>{
 
 	const tresultsContainer = document.getElementById("tresults");
-	//tresultsContainer.innerHTML = "";
+	tresultsContainer.innerHTML = "";
 
 	const numRatiosToPrint = ratios.length;
 
@@ -488,30 +470,60 @@ const printT = (ratios) =>{
 
 	//create test result elements
 	const contrastElement = document.createElement("div");
+	contrastElement.id  = "contrast";
 	const colour1Element = document.createElement("div");
+	colour1Element.id  = "contrast1";
 	const colour2Element = document.createElement("div");
+	colour2Element.id  = "contrast2";
 	const WCAGElementAAL = document.createElement("div");
+	WCAGElementAAL.id  = "aalarge";
+	const pfElementAAL = document.createElement("h4");
+	pfElementAAL.id  = "pf1";
 	const WCAGElementAAS = document.createElement("div");
+	WCAGElementAAS.id  = "aasmall";
+	const pfElementAAS = document.createElement("h4");
+	pfElementAAS.id  = "pf2";
 	const WCAGElementAAAL = document.createElement("div");
+	WCAGElementAAAL.id  = "aaalarge";
+	const pfElementAAAL = document.createElement("h4");
+	pfElementAAAL.id  = "pf3";
 	const WCAGElementAAAS = document.createElement("div");
+	WCAGElementAAAS.id  = "aaasmall";
+	const pfElementAAAS = document.createElement("h4");
+	pfElementAAAS.id  = "pf4";
 	contrastElement.appendChild(document.createTextNode(ratios[i].contrastRatio.toFixed(5)));
 
 	//get results of WCAG tests
-				const resultWCAGAAL = `
-				AA-level large text: ${ratios[i].contrastRatio < 1/3 ? 'PASS' : 'FAIL' } `;
-				const resultWCAGAAS = `
-				AA-level small text: ${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' } `;
-				const resultWCAGAAAL = `
-				AAA-level large text: ${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' }  `;
-				const resultWCAGAAAS = `
-				AAA-level small text: ${ratios[i].contrastRatio < 1/7 ? 'PASS' : 'FAIL' }`;
+		const resultWCAGAAL = `
+		AA-level large text: `
+		const pfAAL = `${ratios[i].contrastRatio < 1/3 ? 'PASS' : 'FAIL' } `;
+		
+		const resultWCAGAAS = `
+		AA-level small text: `
+		const pfAAS = `${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' } `;
+		
+		const resultWCAGAAAL = `
+		AAA-level large text: `
+		const pfAAAL = `${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' }  `;
+		
+		const resultWCAGAAAS = `
+		AAA-level small text: `
+		const pfAAAS = `${ratios[i].contrastRatio < 1/7 ? 'PASS' : 'FAIL' }`;
 
 
 	//display wcag results
 	WCAGElementAAL.appendChild(document.createTextNode(resultWCAGAAL));
+	pfElementAAL.appendChild(document.createTextNode(pfAAL));
+	pfElementAAL.className = ratios[i].contrastRatio < 1/3 ? "pass" : "fail";
 	WCAGElementAAS.appendChild(document.createTextNode(resultWCAGAAS));
+	pfElementAAS.appendChild(document.createTextNode(pfAAS));
+	pfElementAAS.className = ratios[i].contrastRatio < 1/4.5 ? "pass" : "fail";
 	WCAGElementAAAL.appendChild(document.createTextNode(resultWCAGAAAL));
+	pfElementAAAL.appendChild(document.createTextNode(pfAAAL));
+	pfElementAAAL.className = ratios[i].contrastRatio < 1/4.5 ? "pass" : "fail";
 	WCAGElementAAAS.appendChild(document.createTextNode(resultWCAGAAAS));
+	pfElementAAAS.appendChild(document.createTextNode(pfAAAS));
+	pfElementAAAS.className = ratios[i].contrastRatio < 1/7 ? "pass" : "fail";
 
 	//display hex colours
 	const hex1 = rgbToHex(ratios[i].colour1);
@@ -524,20 +536,25 @@ const printT = (ratios) =>{
 	colour2Element.appendChild(document.createTextNode(hex2));
 
 	
-		//tresultsContainer.appendChild(contrastElement);
-		//tresultsContainer.appendChild(WCAGElementAAL);
-		//tresultsContainer.appendChild(WCAGElementAAS);
-		//tresultsContainer.appendChild(WCAGElementAAAL);
-		//tresultsContainer.appendChild(WCAGElementAAAS);
-		//tresultsContainer.appendChild(colour1Element);
-		//tresultsContainer.appendChild(colour2Element);
+	tresultsContainer.appendChild(contrastElement);
+	tresultsContainer.appendChild(WCAGElementAAL);
+	tresultsContainer.appendChild(pfElementAAL);
+	tresultsContainer.appendChild(WCAGElementAAS);
+	tresultsContainer.appendChild(pfElementAAS);
+	tresultsContainer.appendChild(WCAGElementAAAL);
+	tresultsContainer.appendChild(pfElementAAAL);
+	tresultsContainer.appendChild(WCAGElementAAAS);
+	tresultsContainer.appendChild(pfElementAAAS);
+	tresultsContainer.appendChild(colour1Element);
+	tresultsContainer.appendChild(colour2Element);
 	}
 
 	//write na if there are no applicable colours
 	if (foundNone == true){
 	const naElement = document.createElement("div");
 	naElement.appendChild(document.createTextNode("NA"));
-	//tresultsContainer.appendChild(naElement);
+	naElement.className = "na";
+	tresultsContainer.appendChild(naElement);
 	return 0;
 	}
 	else{
@@ -550,7 +567,7 @@ const printT = (ratios) =>{
 //add them to the web page
 const printContrasts = (ratios) =>{
 	const mresultsContainer = document.getElementById("mresults");
-	//mresultsContainer.innerHTML = "";
+	mresultsContainer.innerHTML = "";
 
 	
 	//number of contrast ratios and rgb pairs to print
@@ -570,30 +587,60 @@ const printContrasts = (ratios) =>{
 
 	//create test result elements
 	const contrastElement = document.createElement("div");
+	contrastElement.id  = "contrast";
 	const colour1Element = document.createElement("div");
+	colour1Element.id  = "contrast1";
 	const colour2Element = document.createElement("div");
+	colour2Element.id  = "contrast2";
 	const WCAGElementAAL = document.createElement("div");
+	WCAGElementAAL.id  = "aalarge";
+	const pfElementAAL = document.createElement("h4");
+	pfElementAAL.id  = "pf1";
 	const WCAGElementAAS = document.createElement("div");
+	WCAGElementAAS.id  = "aasmall";
+	const pfElementAAS = document.createElement("h4");
+	pfElementAAS.id  = "pf2";
 	const WCAGElementAAAL = document.createElement("div");
+	WCAGElementAAAL.id  = "aaalarge";
+	const pfElementAAAL = document.createElement("h4");
+	pfElementAAAL.id  = "pf3";
 	const WCAGElementAAAS = document.createElement("div");
+	WCAGElementAAAS.id  = "aaasmall";
+	const pfElementAAAS = document.createElement("h4");
+	pfElementAAAS.id  = "pf4";
 	contrastElement.appendChild(document.createTextNode(ratios[i].contrastRatio.toFixed(5)));
 
 	//get results of WCAG tests
-				const resultWCAGAAL = `
-				AA-level large text: ${ratios[i].contrastRatio < 1/3 ? 'PASS' : 'FAIL' } `;
-				const resultWCAGAAS = `
-				AA-level small text: ${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' } `;
-				const resultWCAGAAAL = `
-				AAA-level large text: ${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' }  `;
-				const resultWCAGAAAS = `
-				AAA-level small text: ${ratios[i].contrastRatio < 1/7 ? 'PASS' : 'FAIL' }`;
+		const resultWCAGAAL = `
+		AA-level large text: `
+		let pfAAL = `${ratios[i].contrastRatio < 1/3 ? 'PASS' : 'FAIL' } `;
+		
+		const resultWCAGAAS = `
+		AA-level small text: `
+		const pfAAS = `${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' } `;
+		
+		const resultWCAGAAAL = `
+		AAA-level large text: `
+		const pfAAAL = `${ratios[i].contrastRatio < 1/4.5 ? 'PASS' : 'FAIL' }  `;
+		
+		const resultWCAGAAAS = `
+		AAA-level small text: `
+		const pfAAAS = `${ratios[i].contrastRatio < 1/7 ? 'PASS' : 'FAIL' }`;
 
 
 	//display wcag results
 	WCAGElementAAL.appendChild(document.createTextNode(resultWCAGAAL));
+	pfElementAAL.appendChild(document.createTextNode(pfAAL));
+	pfElementAAL.className = ratios[i].contrastRatio < 1/3 ? "pass" : "fail";
 	WCAGElementAAS.appendChild(document.createTextNode(resultWCAGAAS));
+	pfElementAAS.appendChild(document.createTextNode(pfAAS));
+	pfElementAAS.className = ratios[i].contrastRatio < 1/4.5 ? "pass" : "fail";
 	WCAGElementAAAL.appendChild(document.createTextNode(resultWCAGAAAL));
+	pfElementAAAL.appendChild(document.createTextNode(pfAAAL));
+	pfElementAAAL.className = ratios[i].contrastRatio < 1/4.5 ? "pass" : "fail";
 	WCAGElementAAAS.appendChild(document.createTextNode(resultWCAGAAAS));
+	pfElementAAAS.appendChild(document.createTextNode(pfAAAS));
+	pfElementAAAS.className = ratios[i].contrastRatio < 1/7 ? "pass" : "fail";
 
 	//display hex colours
 	const hex1 = rgbToHex(ratios[i].colour1);
@@ -606,13 +653,17 @@ const printContrasts = (ratios) =>{
 	colour2Element.appendChild(document.createTextNode(hex2));
 
 	//add everything to containers
-		//mresultsContainer.appendChild(contrastElement);
-		//mresultsContainer.appendChild(WCAGElementAAL);
-		//mresultsContainer.appendChild(WCAGElementAAS);
-		//mresultsContainer.appendChild(WCAGElementAAAL);
-		//mresultsContainer.appendChild(WCAGElementAAAS);
-		//mresultsContainer.appendChild(colour1Element);
-		//mresultsContainer.appendChild(colour2Element);
+		mresultsContainer.appendChild(contrastElement);
+		mresultsContainer.appendChild(WCAGElementAAL);
+		mresultsContainer.appendChild(pfElementAAL);
+		mresultsContainer.appendChild(WCAGElementAAS);
+		mresultsContainer.appendChild(pfElementAAS);
+		mresultsContainer.appendChild(WCAGElementAAAL);
+		mresultsContainer.appendChild(pfElementAAAL);
+		mresultsContainer.appendChild(WCAGElementAAAS);
+		mresultsContainer.appendChild(pfElementAAAS);
+		mresultsContainer.appendChild(colour1Element);
+		mresultsContainer.appendChild(colour2Element);
 	}
 
 	return mContrast;
@@ -686,3 +737,26 @@ function rgb_to_h(r , g , b) {
 
 	return hs;
 }
+
+
+function showDetails() {
+	let reset = (document.getElementById('resultsChart').style.display == 'block');
+	document.getElementById('resultsChart').style.display = 'block';
+	document.getElementById('MResults').style.display = 'block';
+	document.getElementById('PDResults').style.display = 'block';
+	document.getElementById('TResults').style.display = 'block';
+	setTimeout(() => {
+		if(reset) {
+		document.getElementById('resultsChart').style.display = 'none';
+		document.getElementById('MResults').style.display = 'none';
+		document.getElementById('PDResults').style.display = 'none';
+		document.getElementById('TResults').style.display = 'none';
+		}
+		else {
+		document.getElementById('resultsChart').style.display = 'block';
+		document.getElementById('MResults').style.display = 'block';
+		document.getElementById('PDResults').style.display = 'block';
+		document.getElementById('TResults').style.display = 'block';
+		}
+	}, 1);
+};
