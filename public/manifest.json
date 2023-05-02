@@ -1,7 +1,7 @@
 {
 	"name": "SeeColor Extension",
 	"description": "A Chrome extension that evaluates the color blindness accessibility of images",
-	"version": "1.0.0",
+	"version": "8.0.1",
 	"manifest_version": 3,
 	"background": {
 	  "service_worker": "background.js"
