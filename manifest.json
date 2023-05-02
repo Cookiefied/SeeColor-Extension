@@ -13,14 +13,20 @@
 	  "128": "public/icon.png"
   },
   
-  "content_scripts": {
-    "matches": ["<all_urls>"],
-    "scripts": ["SeeColor.js"]
-  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["SeeColor.js"]
+    }
+  ],
+  
 	
   "permissions": [
-    "contextMenus"
+    "contextMenus",
+    "downloads",
+    "<all_urls> with fileSystemProvider"
   ],
+  
 	
   "sidebar_action": {
     "default_icon": "public/32.png",
