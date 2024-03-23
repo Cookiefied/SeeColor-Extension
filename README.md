@@ -1,5 +1,5 @@
 # SeeColor-Extension
-This is the extension version of the SeeColor Project (Link: https://github.com/Cookiefied/SeeColor)
+This is the extension version of the SeeColor Project (Link: https://github.com/wajdialjedaani/SeeColor)
 
 Trello Host: https://trello.com/b/OPUeN6JI/
 
